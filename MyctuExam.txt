@@ -1,0 +1,318 @@
+/*
+public class MyctuExam{
+	public static void main(String[] args)
+	{
+		int num=2;
+		Scanner sc=new Scanner(System.in);		
+		//array a[n] max=101
+		int[] tmp=new int[37];
+
+		num=sc.nextInt();
+		for(int i=0;i<num;i++){
+			tmp[i]=sc.nextInt();
+			}
+		int[] n=new int[num];
+		System.arraycopy(tmp, 0, n, 0, num);
+		
+		int[] m=new int[num];
+		System.out.print(num+" ");
+		for(int i=0;i<num;i++){
+			m[i]=sc.nextInt();
+			}
+	
+		for(int i=0;i<num;i++){
+			System.out.println(new MyctuExam().suanfa(n[i],m[i]));
+		}
+
+		sc.close();
+	}
+	
+
+     * 
+     * @param n 总台阶数
+     * @param m  最多能走的步数
+     * @return 返回能走方法数
+     
+   public int suanfa(final int n,final int m){
+         
+        switch (n) {
+        case 1:         
+            return 1;
+ 
+        case 2:
+            if(m>=2){
+                return 2;
+            }
+            else{
+                return 1;
+            }
+        }
+        int result=0;
+        for (int i = 1; i <n; i++) {
+            int a=i;
+            int b=n-i;
+            result+=suanfa(a, m)*suanfa(b, m);
+        }
+        return result;
+         
+         
+         
+    }
+	}
+
+
+
+/*2
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+
+public class MyctuExam {
+	public static void main(String[] args) {
+		int num=2;
+		Scanner sc=new Scanner(System.in);		
+		System.out.println("输入:");
+		//array a[n] max=101
+		int[] tmp=new int[101];
+
+		num=sc.nextInt();
+		for(int i=0;i<num;i++){
+			tmp[i]=sc.nextInt();
+			}
+		int[] a=new int[num];
+		System.arraycopy(tmp, 0, a, 0, num);
+		sc.close();
+		//System.out.print(num);
+
+		Arrays.sort(a);
+		System.out.print(a[num-4]);
+
+	}	
+}
+
+
+
+/*3
+ * 
+import java.util.*;
+public class MyctuExam{
+	public static void main(String[] args)
+	{
+		Scanner reader=new Scanner(System.in);
+		int x1=reader.nextInt();
+		int y1=reader.nextInt();
+		int x2=reader.nextInt(); 
+		int y2=reader.nextInt();
+		int x3=reader.nextInt();
+		int y3=reader.nextInt();
+		int Area=0;
+		if(!(x1==0&&y1==0&&x2==0&&y2==0&&x3==0&&y3==0))
+		{
+			Area=java.lang.Math.abs((x1*y2+y1*x3+x2*y3)-(x1*y3+y2*x3+y1*x2))/2;
+			System.out.println(Area);
+			
+		}
+		reader.close();
+		}
+	}
+*/
+/*1
+
+import java.util.Scanner;
+
+
+public class MyctuExam {
+	public static void main(String[] args) {
+		int num=2;
+		Scanner sc=new Scanner(System.in);		
+		System.out.println("输入:");
+		//array a[n] max=101
+		int[] tmp=new int[101];
+
+		num=sc.nextInt();
+		for(int i=0;i<num;i++){
+			tmp[i]=sc.nextInt();
+			}
+		int[] a=new int[num];
+		System.arraycopy(tmp, 0, a, 0, num);
+		//System.out.println(Arrays.toString(a));
+		System.out.print(num+" ");
+		
+		int[] b=new int[num];
+		for(int i=0;i<num;i++){
+			b[i]=sc.nextInt();
+			}
+		//System.out.println(Arrays.toString(b));
+		sc.close();
+		System.out.print(num);
+		for(int i=0; i<num; i++){
+			int m=a[i]*2-b[i];
+			System.out.print(" "+m);
+		}
+		
+
+	}
+	
+ */
+ 
+///////////////////////////////////////////////////////////////////////////////////////////
+package MyctuExam;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+public class MyctuExam {
+	class Word{
+		String str;
+		int num;
+		public Word(String str){
+			this.str = str;
+			num = 1;
+		}
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + getOuterType().hashCode();
+			result = prime * result + num;
+			result = prime * result + ((str == null) ? 0 : str.hashCode());
+			return result;
+		}
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Word other = (Word) obj;
+			if (!getOuterType().equals(other.getOuterType()))
+				return false;
+			if (num != other.num)
+				return false;
+			if (str == null) {
+				if (other.str != null)
+					return false;
+			} else if (!str.equals(other.str))
+				return false;
+			return true;
+		}
+		private MyctuExam getOuterType() {
+			return MyctuExam.this;
+		}
+		public void increase(){
+			synchronized (this) {
+				num ++;
+			}
+		}
+		
+		@Override
+		public String toString() {
+			// TODO Auto-generated method stub
+			return str + "[" + num + "]";
+		}
+	}
+	private String path;
+	private int wordNums;//出现的单词个数
+	private Map<String, Word> wordsMap; 
+	private List<String> onceWords;
+	private List<Word> allWord;
+	public MyctuExam(String path) {
+		this.path = path;
+		wordsMap = new HashMap<String, Word>();
+		allWord = new ArrayList<Word>();
+	}
+	
+	
+	//单词的比较器
+	Comparator<Word> wordComparator = new Comparator<Word>() {
+
+		@Override
+		public int compare(Word w1,Word w2) {
+			return w2.num - w1.num;
+		}
+	};
+	/**
+	 * 文本分析
+	 */
+	public void analyse(){
+		try {
+			RandomAccessFile rf = new RandomAccessFile(path,"rw");
+			String str;
+			String words[];
+			while((str = rf.readLine()) != null){
+				words = str.split("\\s+");
+				add2Set(words);
+			}
+			Collections.sort(allWord, wordComparator);//对所有单词按出现次数排序
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 返回单词出现的次数
+	 * @return
+	 */
+	public int getWordsNum(){
+		return wordNums;
+	}
+	
+	/**
+	 * 得到只出现一次的单词
+	 * @return
+	 */
+	public List<String> getOnceWords(){
+		if(onceWords == null){
+			onceWords = new ArrayList<String>();
+			for(String str : wordsMap.keySet()){
+				if(wordsMap.get(str).num == 1){
+					onceWords.add(str);
+				}
+			}
+		}
+		return onceWords;
+	}
+	public List<Word> getAllWord(){
+		return allWord;
+	}
+	 
+	private void add2Set(String[] words) {
+		for(String str : words){
+			Word word = new Word(str);
+			if(wordsMap.containsKey(str)){
+				wordsMap.get(str).increase();//单词个数自增
+			}else{
+				wordsMap.put(str, word);
+				allWord.add(word);
+				wordNums ++;
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		MyctuExam ta = new MyctuExam("D:\\360极速浏览器下载\\wifi_0318\\wifi_0318_CZ");
+		ta.analyse();
+		System.out.format("文中共出现单词%d次\n", ta.getWordsNum());
+		System.out.println("出现一次的单词");
+		for(String word : ta.getOnceWords()){
+			System.out.print(word + " ");
+			}
+		System.out.println("单词按频率从高到底排序");
+		for(Word word : ta.allWord){
+			System.out.println(word);
+			}
+		}
+	}
