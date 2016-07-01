@@ -98,9 +98,20 @@ public class MyctuExam {
 	public static void main(String[] args) throws IOException {
 		long startMili = System.currentTimeMillis();// 当前时间对应的毫秒数
 		System.out.println("开始 1。。。。。。。。 " + startMili);
+		short s1 = 1; 
+		s1 = (short) (s1 + 1);
+		System.out.println(s1);
+		//getName("C:\\Users\\人\\Desktop\\wifi_all");
+        Integer a = new Integer(3);
+        Integer b = 3;                  // 将3自动装箱成Integer类型
+        int c = 3;
+        System.out.println(a == b);     // false 两个引用没有引用同一对象
+        System.out.println(a == c);     // true a自动拆箱成int类型再和c比较
+        
+        Integer f1 = 100, f2 = 100, f3 = 150, f4 = 150;
 
-		getName("C:\\Users\\人\\Desktop\\wifi_all");
-
+        System.out.println(f1 == f2);//true
+        System.out.println(f3 == f4);//false，因为-128-127之外就不一样了
 		long endMili = System.currentTimeMillis();
 		System.out.println("结束 s" + endMili);
 		System.out.println("总耗时为：" + (endMili - startMili) + "毫秒");
