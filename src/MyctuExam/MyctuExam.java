@@ -97,7 +97,7 @@ public class MyctuExam {
 
 	public static void main(String[] args) throws IOException {
 		long startMili = System.currentTimeMillis();// 当前时间对应的毫秒数
-		System.out.println("开始 1 " + startMili);
+		System.out.println("开始 1。。。。。。。。 " + startMili);
 
 		getName("C:\\Users\\人\\Desktop\\wifi_all");
 
