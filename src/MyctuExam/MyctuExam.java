@@ -55,7 +55,7 @@ public class MyctuExam {
 		try {
 			System.out.println("即将读取文件！！！！：");
 			File file = new File(path);
-			if (!file.exists() && file.isDirectory()) {
+			if (file.isDirectory()) {
 				System.out.println("即将读取文件2：");
 				File[] dirFile = file.listFiles();
 				for (File f : dirFile) {
@@ -97,9 +97,9 @@ public class MyctuExam {
 
 	public static void main(String[] args) throws IOException {
 		long startMili = System.currentTimeMillis();// 当前时间对应的毫秒数
-		System.out.println("开始 " + startMili);
+		System.out.println("开始 1 " + startMili);
 
-		getName("C:\\Users\\人\\Desktop\\wifi_all_0511");
+		getName("C:\\Users\\人\\Desktop\\wifi_all");
 
 		long endMili = System.currentTimeMillis();
 		System.out.println("结束 s" + endMili);
