@@ -53,7 +53,7 @@ public class MyctuExam {
 
 	public static void getName(String path) throws IOException {
 		try {
-			System.out.println("即将读取文件：");
+			System.out.println("即将读取文件！！！！：");
 			File file = new File(path);
 			if (!file.exists() && file.isDirectory()) {
 				System.out.println("即将读取文件2：");
