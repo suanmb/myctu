@@ -19,7 +19,7 @@ class UdpSend {
 		//1、建立updsocket
 		DatagramSocket da = new DatagramSocket();
 		//2、提供数据  DatagramPacket(byte[] buf, int length, InetAddress address, int port)
-		byte[] buf = "yutao".getBytes();
+		byte[] buf = "suanmb".getBytes();
 		DatagramPacket de = new DatagramPacket(buf,buf.length,InetAddress.getByName("localhost"),10000);
 		//3、通过socket服务的发送功能，将数据包发送出去
 		da.send(de);
